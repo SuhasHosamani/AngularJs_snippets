@@ -1,0 +1,17 @@
+var app = angular.module('app', []);
+
+app.controller('BuddyCreation', function($scope){
+	$scope.uploadFile = function(files) {
+		var reader = new FileReader();
+			reader.onload = $scope.imageIsLoaded;
+			reader.readAsDataURL(files[0]);
+	};
+	$scope.imageIsLoaded = function(e){
+    $scope.$apply(function() {
+        $scope.imageSrc = e.target.result;
+    });
+	}
+});
+
+//<img class="img-responsive img-thumbnail" alt="Upload Picture" ng-src="{{imageSrc}}" />
+//<input type="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
